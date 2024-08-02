@@ -1,11 +1,16 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, memo } from "react";
 
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
-
-import { imageUrls } from "./constants";
+import { append } from "ramda";
+import { useParams } from "react-router-dom";
 
 const Carousel = () => {
+  const { slug } = useParams();
+  const { data: { imageUrl, imageUrls: partialImageUrls } = {} } =
+    useShowProduct(slug);
+  const imageUrls = append(imageUrl, partialImageUrls);
   const [currentIndex, setCurrentIndex] = useState(0);
   const intervalTime = useRef(null);
 
@@ -48,4 +53,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default memo(Carousel);
