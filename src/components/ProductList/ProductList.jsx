@@ -34,9 +34,9 @@ const ProductList = () => {
 
   const updateQueryParams = useFuncDebounce(value => {
     const params = {
+      page: DEFAULT_PAGE_INDEX,
+      pageSize: DEFAULT_PAGE_SIZE,
       searchTerm: value || null,
-      page: Number(page) || DEFAULT_PAGE_INDEX,
-      pageSize: Number(pageSize) || DEFAULT_PAGE_SIZE,
     };
 
     setSearchKey(value);

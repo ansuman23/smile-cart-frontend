@@ -20,7 +20,6 @@ root.render(
       <BrowserRouter>
         <ToastContainer />
         <App />
-        {/* <FormTemp /> */}
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>
