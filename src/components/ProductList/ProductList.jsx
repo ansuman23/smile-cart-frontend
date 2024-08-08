@@ -86,7 +86,7 @@ const ProductList = () => {
     isLoading,
     isError,
   } = useFetchProducts(productParams);
-  console.log(products);
+  // console.log(products);
   if (isError) {
     return <PageNotFound />;
   }

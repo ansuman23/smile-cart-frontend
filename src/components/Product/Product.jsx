@@ -59,7 +59,7 @@ const Product = () => {
   return (
     <div className="px-6 pb-6">
       <Header title={name} />
-      <div className="flex-gap-4 mt-16">
+      <div className="mt-16 flex gap-4">
         <div className="w-2/5">
           <div className="flex justify-center gap-16">
             {isNotNil(imageUrls) ? (
@@ -69,25 +69,25 @@ const Product = () => {
             )}
           </div>
         </div>
-      </div>
-      <div className="w-3/5 space-y-4">
-        <Typography>{description}</Typography>
-        <Typography>MRP: {mrp}</Typography>
-        <Typography className="font-semibold">
-          Offer Price:{offerPrice}
-        </Typography>
-        <Typography className="font-semibold text-green-600">
-          {discountPercentage}% off
-        </Typography>
-        <div className="flex space-x-10">
-          <AddToCart {...{ availableQuantity, slug }} />
-          <Button
-            className="bg-neutral-800 hover:bg-neutral-950"
-            label="Buy Now"
-            size="large"
-            to={routes.checkout}
-            onClick={() => setSelectedQuantity(selectedQuantity || 1)}
-          />
+        <div className="w-3/5 space-y-4">
+          <Typography>{description}</Typography>
+          <Typography>MRP: {mrp}</Typography>
+          <Typography className="font-semibold">
+            Offer Price:{offerPrice}
+          </Typography>
+          <Typography className="font-semibold text-green-600">
+            {discountPercentage}% off
+          </Typography>
+          <div className="flex space-x-10">
+            <AddToCart {...{ availableQuantity, slug }} />
+            <Button
+              className="bg-neutral-800 hover:bg-neutral-950"
+              label="Buy Now"
+              size="large"
+              to={routes.checkout}
+              onClick={() => setSelectedQuantity(selectedQuantity || 1)}
+            />
+          </div>
         </div>
       </div>
     </div>

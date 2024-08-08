@@ -32,46 +32,58 @@ const ProductQuantity = ({ slug }) => {
 
   return (
     <div className="neeto-ui-border-black neeto-ui-rounded inline-flex flex-row items-center border">
-      <Button
-        className="focus-within:ring:0"
-        label="-"
-        style="text"
-        onClick={event => {
-          event.stopPropagation();
-          event.preventDefault();
-          setSelectedQuantity(parsedSelectedQuantity - 1);
-        }}
-      />
-      <Input
-        nakedInput
-        className="ml-2"
-        contentSize="2"
-        ref={countInputFocus}
-        value={selectedQuantity}
-        onChange={handleSetCount}
-        onClick={event => {
-          event.stopPropagation();
-          event.preventDefault();
-        }}
-      />
-      {/* {selectedQuantity} */}
-      <ToolTipWrapper
-        content="Reached Maximum Units"
-        position="top"
-        showToolTip={isNotValidQuantity}
-      >
+      {selectedQuantity > 0 ? (
+        <div className="flex items-center">
+          <Button
+            className="focus-within:ring:0"
+            label="-"
+            style="text"
+            onClick={event => {
+              event.stopPropagation();
+              event.preventDefault();
+              if (parsedSelectedQuantity > 0) {
+                setSelectedQuantity(parsedSelectedQuantity - 1);
+              }
+            }}
+          />
+          <Input
+            nakedInput
+            className="ml-2"
+            contentSize="2"
+            ref={countInputFocus}
+            value={selectedQuantity}
+            onChange={handleSetCount}
+            onClick={event => {
+              event.stopPropagation();
+              event.preventDefault();
+            }}
+          />
+          {/* {selectedQuantity} */}
+          <ToolTipWrapper
+            content="Reached Maximum Units"
+            position="top"
+            showToolTip={isNotValidQuantity}
+          >
+            <Button
+              className="focus:within:ring-0"
+              disabled={isNotValidQuantity}
+              label="+"
+              style="text"
+              onClick={event => {
+                event.stopPropagation();
+                event.preventDefault();
+                setSelectedQuantity(parsedSelectedQuantity + 1);
+              }}
+            />
+          </ToolTipWrapper>
+        </div>
+      ) : (
         <Button
-          className="focus:within:ring-0"
-          disabled={isNotValidQuantity}
-          label="+"
-          style="text"
-          onClick={event => {
-            event.stopPropagation();
-            event.preventDefault();
-            setSelectedQuantity(parsedSelectedQuantity + 1);
-          }}
+          label="Add to Cart"
+          size="large"
+          onClick={() => setSelectedQuantity(1)}
         />
-      </ToolTipWrapper>
+      )}
     </div>
   );
 };
